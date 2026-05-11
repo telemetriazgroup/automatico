@@ -4,17 +4,17 @@ services:
     container_name: n8n
     restart: always
     ports:
-      - "0.0.0.0:5678:5678"      # escucha en todas las interfaces
+      - "0.0.0.0:5678:5678"     # Docker expone el 5678
     environment:
-      - N8N_HOST=ztrack.app
-      - N8N_PORT=443
-      - N8N_PROTOCOL=https
-      - N8N_PATH=/n8n/            # subpath clave
+      - N8N_PORT=5678            # n8n escucha en 5678 dentro del contenedor
+      - N8N_PROTOCOL=https       # protocolo público (lo que ve el usuario)
+      - N8N_HOST=ztrack.app      # dominio público
+      - N8N_PATH=/n8n/           # subpath
       - WEBHOOK_URL=https://ztrack.app/n8n/
       - N8N_EDITOR_BASE_URL=https://ztrack.app/n8n/
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=TelemetriaZgroup2026
+      - N8N_BASIC_AUTH_PASSWORD=TuPasswordSeguro123
       - GENERIC_TIMEZONE=America/Lima
       - TZ=America/Lima
     volumes:

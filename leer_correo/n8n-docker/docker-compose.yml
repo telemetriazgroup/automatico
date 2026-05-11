@@ -1,0 +1,19 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: always
+    ports:
+      - "0.0.0.0:5678:5678"    # <-- fuerza escuchar en TODAS las interfaces
+    environment:
+      - N8N_HOST=0.0.0.0        # <-- importante, no pongas la IP aquí
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://192.168.1.200:5678/
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=TelemetriaZgroup2026
+      - GENERIC_TIMEZONE=America/Lima
+      - TZ=America/Lima
+    volumes:
+      - ./n8n_data:/home/node/.n8n
